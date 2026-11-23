@@ -11,6 +11,10 @@ def dirty():
 def clean():
     return MixingJob(read_sample('clean'))
 
+@pytest.fixture(scope='session')
+def ambiguous():
+    return MixingJob(read_sample('ambiguous'))
+
 @pytest.fixture
 def client(tmp_path):
     return create_app(tmp_path).test_client()

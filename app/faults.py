@@ -12,5 +12,6 @@ REASONS = {
     'TARE_OVERLAP':'皮重版本重叠', 'TARE_RANGE':'皮重区间倒置', 'NEGATIVE_NET':'负净量',
     'LOT_UNKNOWN':'颜料别名未登记', 'LOT_CONFLICT':'别名关联多个批号', 'MIXED_OUTPUT':'混料动作不得指定单一批号',
     'OVERDRAW':'净重超过罐内存量', 'CLAIM_CONFLICT':'同批申报值冲突', 'NO_CLAIM':'无回桶申报',
-    'MISMATCH':'回桶差异', 'MATCH':'账实一致', 'ACCEPTED':'已采信',
+    'MISMATCH':'回桶差异', 'MATCH':'账实一致', 'UNCERTAIN':'申报落在可行区间',
+    'ORDER_AMBIGUOUS':'同分钟先后不定', 'ACCEPTED':'已采信',
 }

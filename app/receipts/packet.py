@@ -4,13 +4,13 @@ from hashlib import sha256
 from app.faults import LedgerError
 from app.receipts.contract import Workshop
 from app.receipts.sheet import scan
-from app.settings import DATA, SHEETS
+from app.settings import DATA, SAMPLES, SHEETS
 
 NAMES = ('job', *SHEETS)
 
 
 def read_sample(name):
-    if name not in ('dirty','clean'):
+    if name not in SAMPLES:
         raise LedgerError('SAMPLE_ABSENT','找不到样例收据',404)
     return {key:(DATA/name/(key+('.json' if key=='job' else '.csv'))).read_bytes().decode()
             for key in NAMES}

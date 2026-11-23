@@ -6,7 +6,7 @@ from app.job import MixingJob
 from app.ledger.signoff import certify
 from app.receipts.clock import studio_label
 from app.receipts.packet import read_sample
-from app.receipts.units import grams
+from app.receipts.units import grams,grams_span
 from app.settings import EDITION
 
 LINKS={'weighings':'称量原件','tares':'容器皮重','lots':'颜料批号','recovery':'回桶分料',
@@ -45,5 +45,6 @@ def desk(screen='overview'):
     if screen=='balance':
         rejects=data[screen]['invalid_receipts']
     return render_template('base.html',screen=screen,links=LINKS,sample=sample,key=key,data=data,meta=meta,
-                           receipt=receipt,history=history,labels=REASONS,actions=ACTIONS,grams=grams,
+                           receipt=receipt,history=history,labels=REASONS,actions=ACTIONS,
+                           grams=grams,grams_span=grams_span,
                            studio_label=studio_label,rejects=rejects)

@@ -24,3 +24,13 @@ def milligrams(raw, unit):
 
 def grams(mg):
     return f'{Decimal(mg) / 1000:,.3f}' if mg is not None else '—'
+
+
+def grams_span(span):
+    """可行区间的克重写法；两端相同则只写一个数，不装作不确定。"""
+    if not span:
+        return '—'
+    low, high = span
+    if low == high:
+        return grams(low)
+    return f'{grams(low)} 至 {grams(high)}'

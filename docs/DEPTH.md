@@ -1,7 +1,7 @@
 # 深度登记 展陈调色核料册
 
 - 规模：中型
-- 核心规则：按称量时间选皮重，以每次领用、上件和损耗后的实际成分回分剩料，按批号守恒。
+- 核心规则：按称量时间选皮重，以每次领用、上件和损耗后的实际成分回分剩料，按批号守恒；同分钟先后不定时不替原件猜配比，以可行区间交代。
 
 ## 功能模块
 
@@ -30,11 +30,14 @@
 | TRAP-15 | g、kg、mg 混用 | 净重差几个数量级 | 转整数毫克 | `app/receipts/units.py` | `tests/test_tares.py::test_mass_units` |
 | TRAP-24 | 等余数 | 尾差归属漂移 | 余数相同按批号 | `app/blend/share.py` | `tests/test_recovery.py::test_exact_rounding_residue` |
 | TRAP-25 | 两种皮重同时生效 | 误取第一或最后版本 | 双版本保留且隔离 | `app/receipts/tare.py` | `tests/test_tares.py::test_overlapping_tare_versions` |
+| TRAP-31 | 旧秤只到分钟，同罐入罐与上件同刻 | 先算领用再算上件，把新料算进前一件；整罐压住又交不出实称用量 | 保留同刻全部可行先后，分摊给区间；基准先出罐后入罐 | `app/blend/replay.py` | `tests/test_ambiguity.py` |
+| TRAP-32 | 多种批号配比都说得通 | 收据把某一种配比写成唯一实数 | 申报跨区间记 `UNCERTAIN`，收据附 `uncertainty`；后续出罐按全部方案复算 | `app/blend/balance.py` `app/ledger/signoff.py` | `tests/test_ambiguity.py::test_span_never_becomes_a_signed_match` |
 
 ## 对账规则
 
 - 秤单 40 = 入册 34 + 隔离 5 + 重复表头 1。后续 3 张皮重隔离、2 张批号隔离、1 张超量，回放 28 张。
-- 每批号期初 + 领用 = 上件 + 损耗 + 回桶余料 + 争议留罐，实收与申报差异另外对照。
+- 每批号期初 + 领用 = 上件 + 损耗 + 回桶余料 + 争议留罐，实收与申报差异另外对照。每个可行先后都须满足此式；区间端点亦不例外。
+- 同一工单重跑内容不变即复用原留档键，不新增文件；内容不同才形成新键。
 - 规则版本与全原件的 SHA-256 构成工单留档键；同目录临时文件写入并同步后，以原子硬链接发布。
 
 ## 已知边界
