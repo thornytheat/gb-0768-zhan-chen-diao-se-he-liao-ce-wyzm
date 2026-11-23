@@ -1,0 +1,4 @@
+<section class="panel receipt-sheet"><div class="receipt-head"><div><p>工坊物料联</p><h2>克重收据</h2></div><div class="serial"><strong>{{ meta.order }}</strong><span>{{ '已留档' if key else '未封存' }}</span></div></div>
+{% set t=data.balance.totals %}<dl class="kpis"><div><dt>期初</dt><dd>{{ grams(t.opening_mg) }}</dd></div><div><dt>领用</dt><dd>{{ grams(t.issued_mg) }}</dd></div><div><dt>上件</dt><dd>{{ grams(t.applied_mg) }}</dd></div><div><dt>损耗</dt><dd>{{ grams(t.loss_mg) }}</dd></div><div><dt>回桶余料</dt><dd>{{ grams(t.returned_mg) }}</dd></div><div><dt>留罐争议</dt><dd>{{ grams(t.disputed_mg) }}</dd></div></dl>
+<div class="stub"><span>计量单位 g · 精确至 0.001 g</span><span>{{ data.balance.difference_lines }} 笔申报需核查</span></div></section>
+<section class="panel folio"><div class="folio-head"><h2>颜料成分核对</h2><a href="{{ url_for('studio.desk',screen='balance',sample=sample,key=key) }}">打开库存核料 →</a></div>{% include 'balances.j2' %}</section>

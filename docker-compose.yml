@@ -1,0 +1,7 @@
+services:
+  brush-receipts:
+    build: .
+    ports: ["18467:8000"]
+    volumes: ["palette-receipts:/data"]
+volumes:
+  palette-receipts:

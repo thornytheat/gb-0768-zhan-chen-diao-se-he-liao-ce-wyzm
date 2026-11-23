@@ -1,0 +1,8 @@
+:root {
+  --bg:#f5eee3; --rail:#ece0d0; --paper:#fffbf3; --fold:#f8eee1;
+  --ink:#352820; --fade:#674f42; --quiet:#785e50; --stamp:#903d27;
+  --accent:#a74b2f; --line:#dfc9b6; --join:#bd977f; --red:#a74835;
+  --blue:#3c536e; --chalk:#d7c5a9; --ok:#456640; --warn:#8f421d;
+  --doc:"Songti SC","STSong",Georgia,serif; --mono:"SFMono-Regular",Menlo,Consolas,monospace;
+  --body:"PingFang SC","Microsoft YaHei",sans-serif; --row:36px; --pad:22px; --spine:196px;
+}
